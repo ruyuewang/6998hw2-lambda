@@ -1,17 +1,45 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
 Resources:
-  MyEC2Instance: #An inline comment
-    Type: "AWS::EC2::Instance"
-    Properties: 
-      ImageId: "ami-0ff8a91507f77f867" #Another comment -- This is a Linux AMI
-      InstanceType: t2.micro
-      KeyName: testkey
-      BlockDeviceMappings:
-        -
-          DeviceName: /dev/sdm
-          Ebs:
-            VolumeType: io1
-            Iops: 200
-            DeleteOnTermination: false
-            VolumeSize: 20
+  IndexLambda:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: ./index-photos
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'Your function execution role'
+      Events:
+        BucketEvent1:
+          Type: S3
+          Properties:
+            Bucket:
+              Ref: IndexBucket2
+            Events:
+              - 's3:ObjectCreated:Put'
+  IndexBucket2:
+    Type: 'AWS::S3::Bucket'
+  SearchLambda:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: ./search-photos
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'Your function execution role'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /search
+            Method: GET
+        Api2:
+          Type: Api
+          Properties:
+            Path: /MyResource
+            Method: ANY
