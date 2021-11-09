@@ -21,7 +21,7 @@ Resources:
               Ref: b2indexphotos
             Events:
               - 's3:ObjectCreated:Put'
-  b2indexphoto:
+  b2indexphotos:
     Type: 'AWS::S3::Bucket'
   SearchLambda:
     Type: 'AWS::Serverless::Function'
@@ -45,3 +45,5 @@ Resources:
           Properties:
             Path: /MyResource
             Method: ANY
+            
+           
