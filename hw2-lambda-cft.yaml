@@ -2,9 +2,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template describing your function.
 Resources:
-  index-photos:
+  IndexLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: index-photos 
       Handler: lambda_function.lambda_handler
       Runtime: python3.8
       CodeUri: ./index-photos
@@ -22,9 +23,10 @@ Resources:
               - 's3:ObjectCreated:Put'
   b2indexphoto:
     Type: 'AWS::S3::Bucket'
-  search-photos:
+  SearchLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: search-photos 
       Handler: lambda_function.lambda_handler
       Runtime: python3.8
       CodeUri: ./search-photos
