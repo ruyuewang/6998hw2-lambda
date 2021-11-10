@@ -5,13 +5,12 @@ Resources:
   IndexLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: index-photos 
       Handler: lambda_function.lambda_handler
-      Runtime: python3.8
-      CodeUri: ./index-photos
+      Runtime: python3.9
+      CodeUri: ./index-photos-new
       Description: ''
       MemorySize: 128
-      Timeout: 3
+      Timeout: 900
       Role: 'arn:aws:iam::251064567471:role/service-role/index-photos-role-qn7la9fu'
       Events:
         BucketEvent1:
@@ -28,11 +27,11 @@ Resources:
     Properties:
       FunctionName: search-photos 
       Handler: lambda_function.lambda_handler
-      Runtime: python3.8
-      CodeUri: ./search-photos
+      Runtime: python3.9
+      CodeUri: ./search-photos-neewe
       Description: ''
       MemorySize: 128
-      Timeout: 3
+      Timeout: 900
       Role: 'arn:aws:iam::251064567471:role/service-role/search-photos-role-af474g8c'
       Events:
         Api1:
