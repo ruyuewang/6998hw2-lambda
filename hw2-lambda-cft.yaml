@@ -7,7 +7,7 @@ Resources:
     Properties:
       Handler: lambda_function.lambda_handler
       Runtime: python3.9
-      CodeUri: ./index-photos-new
+      CodeUri: ./index-photos
       Description: ''
       MemorySize: 128
       Timeout: 900
@@ -25,10 +25,9 @@ Resources:
   SearchLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: search-photos 
       Handler: lambda_function.lambda_handler
       Runtime: python3.9
-      CodeUri: ./search-photos-neewe
+      CodeUri: ./search-photos
       Description: ''
       MemorySize: 128
       Timeout: 900
