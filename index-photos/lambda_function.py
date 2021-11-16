@@ -11,7 +11,7 @@ import certifi
 bot = boto3.client('s3')
 
 def lambda_handler(event, context):
-    # test cfm
+    # test demo
     s3_info = event['Records'][0]['s3']
     bucket_name = s3_info['bucket']['name']
     key_name = s3_info['object']['key']
