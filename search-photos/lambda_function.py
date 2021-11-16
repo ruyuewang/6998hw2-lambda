@@ -6,9 +6,9 @@ import requests_aws4auth
 import chardet
 import urllib3
 import certifi
+import inflect
 
 def lambda_handler(event, context):
-    # test 
     query = event['queryStringParameters']['q']
     labels = getLabels(query)
     print("----------labels is----------", labels)
@@ -42,7 +42,13 @@ def getLabels(query):
         slot_val = response['slots']
         for key,value in slot_val.items():
             if value!=None:
-                labels.append(value)
+                p = inflect.engine()
+                if p.singular_noun(value) == False:
+                    singular_value = value
+                else:
+                    singular_value = p.singular_noun(value)
+                # singular_value =  value.rstrip('s')
+                labels.append(singular_value)
     return labels
     
 # function to get all photo paths  
