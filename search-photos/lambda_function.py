@@ -9,6 +9,7 @@ import certifi
 import inflect
 
 def lambda_handler(event, context):
+    # test
     query = event['queryStringParameters']['q']
     labels = getLabels(query)
     print("----------labels is----------", labels)
